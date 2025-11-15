@@ -3,6 +3,15 @@
 import { useState, useEffect } from 'react'
 import Select from '@/components/Select'
 import Pagination from '@/components/Pagination'
+import ChamadoDetails from '@/components/ChamadoDetails'
+
+interface Mensagem {
+  id: string
+  autor: string
+  texto: string
+  data: string
+  tipo: 'sistema' | 'usuario' | 'franqueado'
+}
 
 interface Chamado {
   id: string
@@ -17,6 +26,7 @@ interface Chamado {
   responsavel: string
   tempoResolucao: string | null
   sla: string
+  mensagens?: Mensagem[]
 }
 
 interface MainContentProps {
@@ -30,7 +40,18 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
   const [busca, setBusca] = useState<string>('')
   const [modoVisualizacao, setModoVisualizacao] = useState<'cards' | 'tabela'>('cards')
   const [currentPage, setCurrentPage] = useState<number>(1)
+  const [chamadoSelecionado, setChamadoSelecionado] = useState<Chamado | null>(null)
+  const [isDetailsOpen, setIsDetailsOpen] = useState<boolean>(false)
   const itemsPerPage = 10
+
+  const handleChamadoClick = (chamado: Chamado) => {
+    setChamadoSelecionado(chamado)
+    setIsDetailsOpen(true)
+  }
+
+  const handleCloseDetails = () => {
+    setIsDetailsOpen(false)
+  }
 
   // Sincronizar o filtro do Select com o filtro do sidebar
   useEffect(() => {
@@ -400,6 +421,7 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
             return (
             <div
               key={chamado.id}
+              onClick={() => handleChamadoClick(chamado)}
               className="rounded-lg p-4 cursor-pointer border border-gray-200 bg-white card-hover-gradient"
             >
             {/* Header com ID e Badges */}
@@ -544,6 +566,7 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
                 return (
                   <tr
                     key={chamado.id}
+                    onClick={() => handleChamadoClick(chamado)}
                     className="border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
                   >
                     <td className="py-3 px-4 text-xs font-mono text-gray-500">{chamado.id}</td>
@@ -613,6 +636,13 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
       )}
         </div>
       </div>
+
+      {/* Painel de Detalhes do Chamado */}
+      <ChamadoDetails
+        chamado={chamadoSelecionado}
+        isOpen={isDetailsOpen}
+        onClose={handleCloseDetails}
+      />
     </main>
   )
 }

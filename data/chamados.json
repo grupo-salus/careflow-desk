@@ -11,7 +11,30 @@
     "franqueado": "Unidade Centro - São Paulo",
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
-    "sla": "2025-11-15T16:30:00"
+    "sla": "2025-11-15T16:30:00",
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Centro - São Paulo",
+        "texto": "O sistema está completamente inacessível desde às 14h30. Nenhum usuário consegue fazer login ou acessar qualquer funcionalidade.",
+        "data": "2025-11-15T14:30:00",
+        "tipo": "franqueado"
+      },
+      {
+        "id": "2",
+        "autor": "Técnico",
+        "texto": "Olá! Recebemos seu chamado crítico. Nossa equipe técnica já está investigando o problema. Vamos priorizar a resolução imediatamente.",
+        "data": "2025-11-15T14:45:00",
+        "tipo": "usuario"
+      },
+      {
+        "id": "3",
+        "autor": "Técnico",
+        "texto": "Identificamos que o problema está relacionado ao servidor de banco de dados. Estamos trabalhando na correção e estimamos resolver em até 1 hora.",
+        "data": "2025-11-15T15:00:00",
+        "tipo": "usuario"
+      }
+    ]
   },
   {
     "id": "CH-002",
@@ -67,7 +90,37 @@
     "franqueado": "Unidade Oeste - Campinas",
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
-    "sla": "2025-11-15T17:00:00"
+    "sla": "2025-11-15T17:00:00",
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Oeste - Campinas",
+        "texto": "O sistema não está registrando nenhuma venda desde às 10h desta manhã. Todas as transações realizadas não estão sendo salvas no banco de dados. Impacto crítico nas operações.",
+        "data": "2025-11-15T13:00:00",
+        "tipo": "franqueado"
+      },
+      {
+        "id": "2",
+        "autor": "Técnico",
+        "texto": "Entendemos a urgência. Estamos verificando o problema no banco de dados agora mesmo.",
+        "data": "2025-11-15T13:15:00",
+        "tipo": "usuario"
+      },
+      {
+        "id": "3",
+        "autor": "Técnico",
+        "texto": "Encontramos o problema: conexão com o banco de dados foi interrompida. Estamos restabelecendo a conexão e validando a integridade dos dados.",
+        "data": "2025-11-15T13:45:00",
+        "tipo": "usuario"
+      },
+      {
+        "id": "4",
+        "autor": "Técnico",
+        "texto": "Conexão restabelecida! O sistema já está registrando vendas normalmente. Por favor, confirme se está funcionando corretamente na sua unidade.",
+        "data": "2025-11-15T14:15:00",
+        "tipo": "usuario"
+      }
+    ]
   },
   {
     "id": "CH-006",
@@ -179,7 +232,30 @@
     "franqueado": "Unidade Sul - Curitiba",
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
-    "sla": "2025-11-15T18:00:00"
+    "sla": "2025-11-15T18:00:00",
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Sul - Curitiba",
+        "texto": "O sistema fica extremamente lento entre 8h e 10h da manhã, período de maior movimento. Quase impossível trabalhar.",
+        "data": "2025-11-15T08:00:00",
+        "tipo": "franqueado"
+      },
+      {
+        "id": "2",
+        "autor": "Técnico",
+        "texto": "Vamos analisar a performance do sistema durante esse horário. Pode ser um problema de capacidade do servidor.",
+        "data": "2025-11-15T08:30:00",
+        "tipo": "usuario"
+      },
+      {
+        "id": "3",
+        "autor": "Técnico",
+        "texto": "Identificamos que o servidor está sobrecarregado durante o pico. Estamos otimizando as consultas ao banco de dados e aumentando a capacidade de processamento.",
+        "data": "2025-11-15T10:00:00",
+        "tipo": "usuario"
+      }
+    ]
   },
   {
     "id": "CH-014",
