@@ -16,3 +16,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.card-gradient-border {
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(120deg, rgb(104, 63, 231) 15%, rgb(202, 44, 178) 50%, rgb(253, 144, 16) 100%) border-box;
+  border: 2px solid transparent;
+}
+
+.card-hover-gradient {
+  transition: all 0.3s ease;
+}
+
+.card-hover-gradient:hover {
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(120deg, rgb(104, 63, 231) 15%, rgb(202, 44, 178) 50%, rgb(253, 144, 16) 100%) border-box;
+  border: 1px solid transparent;
+}
+

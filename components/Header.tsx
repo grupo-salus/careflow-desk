@@ -32,7 +32,7 @@ export default function Header() {
         <nav className="flex items-center gap-6">
           <a
             href="#"
-            className="flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-colors"
+            className="flex items-center gap-2 text-gray-600 hover:text-orange-500 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ export default function Header() {
           </a>
           <a
             href="#"
-            className="flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-colors"
+            className="flex items-center gap-2 text-gray-600 hover:text-orange-500 transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export default function Header() {
           </a>
           <a
             href="/"
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-100 text-purple-700 font-medium transition-all duration-200"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-50 text-orange-600 font-medium transition-all duration-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@ export default function Header() {
         {/* User Info */}
         <div className="flex items-center gap-3">
           <button className="flex items-center gap-2 hover:bg-gray-50 rounded-lg px-2 py-1 transition-colors">
-            <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+            <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-semibold">
               A
             </div>
             <div className="flex flex-col text-left">
