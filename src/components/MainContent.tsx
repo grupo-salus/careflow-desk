@@ -119,7 +119,6 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
   const chamadosFiltrados = filtrarChamados()
   
   // Paginação
-  const totalPages = Math.ceil(chamadosFiltrados.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
   const chamadosPaginados = chamadosFiltrados.slice(startIndex, endIndex)

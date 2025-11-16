@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import Header from '@/components/Header'
 import Sidebar from '@/components/Sidebar'
@@ -9,9 +7,33 @@ import AbrirChamadoCriticoModal from '@/components/AbrirChamadoCriticoModal'
 import Toast from '@/components/Toast'
 import chamadosData from '@/data/chamados.json'
 
-export default function Home() {
+interface Mensagem {
+  id: string
+  autor: string
+  texto: string
+  data: string
+  tipo: 'sistema' | 'usuario' | 'franqueado'
+}
+
+interface Chamado {
+  id: string
+  titulo: string
+  descricao: string
+  prioridade: string
+  status: string
+  categoria: string
+  dataAbertura: string
+  dataAtualizacao: string
+  franqueado: string
+  responsavel: string
+  tempoResolucao: string | null
+  sla: string
+  mensagens?: Mensagem[]
+}
+
+function App() {
   const [filtroAtivo, setFiltroAtivo] = useState<string>('todos')
-  const [chamados, setChamados] = useState(chamadosData)
+  const [chamados, setChamados] = useState<Chamado[]>(chamadosData as Chamado[])
   const [isAbrirChamadoOpen, setIsAbrirChamadoOpen] = useState<boolean>(false)
   const [isAbrirChamadoCriticoOpen, setIsAbrirChamadoCriticoOpen] = useState<boolean>(false)
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'warning' | 'info'; isVisible: boolean }>({
@@ -47,7 +69,7 @@ export default function Home() {
     const novoId = `CH-${String(chamados.length + 1).padStart(3, '0')}`
     
     // Criar novo chamado
-    const novoChamado = {
+    const novoChamado: Chamado = {
       id: novoId,
       titulo: dados.titulo,
       descricao: dados.descricao,
@@ -66,7 +88,7 @@ export default function Home() {
           autor: 'Unidade Atual',
           texto: dados.descricao,
           data: new Date().toISOString(),
-          tipo: 'franqueado' as const
+          tipo: 'franqueado'
         }
       ]
     }
@@ -92,7 +114,7 @@ export default function Home() {
     const novoId = `CH-${String(chamados.length + 1).padStart(3, '0')}`
     
     // Criar novo chamado crítico
-    const novoChamado = {
+    const novoChamado: Chamado = {
       id: novoId,
       titulo: dados.titulo,
       descricao: dados.descricao,
@@ -111,7 +133,7 @@ export default function Home() {
           autor: 'Unidade Atual',
           texto: dados.descricao,
           data: new Date().toISOString(),
-          tipo: 'franqueado' as const
+          tipo: 'franqueado'
         }
       ]
     }
@@ -162,4 +184,6 @@ export default function Home() {
     </div>
   )
 }
+
+export default App
 
