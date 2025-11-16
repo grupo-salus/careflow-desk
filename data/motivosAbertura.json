@@ -1,0 +1,59 @@
+[
+  {
+    "id": "reset-senha",
+    "titulo": "Reset de Senha",
+    "descricao": "Solicitação de redefinição de senha de acesso",
+    "categoria": "Acesso",
+    "textoInformativo": "Para agilizar o processo de reset de senha, informe:\n\n• Nome completo do usuário\n• CPF ou matrícula\n• Email cadastrado no sistema\n• Unidade/Franquia onde trabalha\n• Data do último acesso bem-sucedido (se lembrar)\n• Se possui acesso a outro sistema da empresa"
+  },
+  {
+    "id": "problema-sistema",
+    "titulo": "Problema no Sistema",
+    "descricao": "Erro, bug ou falha no funcionamento do sistema",
+    "categoria": "Sistema",
+    "textoInformativo": "Para resolver mais rapidamente, informe:\n\n• Qual tela ou funcionalidade está com problema\n• Mensagem de erro exata (se houver)\n• Passos para reproduzir o problema\n• Quando o problema começou a ocorrer\n• Navegador e versão utilizada\n• Se o problema ocorre em outros navegadores\n• Screenshots ou vídeos do problema (se possível)"
+  },
+  {
+    "id": "instalacao-software",
+    "titulo": "Instalação de Software",
+    "descricao": "Solicitação de instalação de programas ou atualizações",
+    "categoria": "Infraestrutura",
+    "textoInformativo": "Para processar a instalação, informe:\n\n• Nome do software a ser instalado\n• Versão necessária (se específica)\n• Computador/equipamento onde será instalado\n• Justificativa para a instalação\n• Se há licença disponível\n• Prazo necessário para instalação"
+  },
+  {
+    "id": "acesso-rede",
+    "titulo": "Acesso à Rede",
+    "descricao": "Problemas de conexão ou permissões de rede",
+    "categoria": "Infraestrutura",
+    "textoInformativo": "Para diagnosticar o problema de rede, informe:\n\n• Tipo de problema (sem internet, lento, sites bloqueados)\n• Computador/equipamento afetado\n• Quando o problema começou\n• Se outros computadores na mesma rede estão funcionando\n• Mensagens de erro exibidas\n• Tentativas de solução já realizadas"
+  },
+  {
+    "id": "backup-restauracao",
+    "titulo": "Backup e Restauração",
+    "descricao": "Solicitação de backup ou restauração de dados",
+    "categoria": "Dados",
+    "textoInformativo": "Para realizar backup/restauração, informe:\n\n• Tipo de operação (backup ou restauração)\n• Arquivos ou pastas envolvidos\n• Data do backup a ser restaurado (se aplicável)\n• Localização dos arquivos\n• Motivo da solicitação\n• Urgência da operação"
+  },
+  {
+    "id": "hardware",
+    "titulo": "Problema de Hardware",
+    "descricao": "Defeito ou necessidade de equipamento",
+    "categoria": "Infraestrutura",
+    "textoInformativo": "Para resolver o problema de hardware, informe:\n\n• Equipamento com problema (computador, impressora, etc.)\n• Descrição do problema ou sintoma\n• Quando o problema começou\n• Se o equipamento ainda está funcionando parcialmente\n• Número de série ou patrimônio (se disponível)\n• Se há backup dos dados importantes"
+  },
+  {
+    "id": "treinamento",
+    "titulo": "Solicitação de Treinamento",
+    "descricao": "Pedido de capacitação ou orientação",
+    "categoria": "Suporte",
+    "textoInformativo": "Para organizar o treinamento, informe:\n\n• Tema ou sistema que precisa de treinamento\n• Quantidade de pessoas a serem treinadas\n• Nível de conhecimento atual da equipe\n• Prazo desejado para o treinamento\n• Formato preferido (presencial, online, vídeo)\n• Horários disponíveis da equipe"
+  },
+  {
+    "id": "outro",
+    "titulo": "Outro",
+    "descricao": "Outras solicitações não listadas",
+    "categoria": "Geral",
+    "textoInformativo": "Descreva detalhadamente sua solicitação, incluindo:\n\n• Tipo de problema ou necessidade\n• Contexto e situação atual\n• O que já foi tentado para resolver\n• Impacto no trabalho diário\n• Urgência e prazo necessário\n• Qualquer informação adicional relevante"
+  }
+]
+

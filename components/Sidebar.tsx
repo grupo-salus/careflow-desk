@@ -5,11 +5,13 @@ import { useState } from 'react'
 interface SidebarProps {
   onFilterChange?: (filter: string) => void
   onCriarChamado?: () => void
+  onCriarChamadoCritico?: () => void
 }
 
 export default function Sidebar({ 
   onFilterChange, 
-  onCriarChamado
+  onCriarChamado,
+  onCriarChamadoCritico
 }: SidebarProps) {
   const [filtroAtivo, setFiltroAtivo] = useState<string>('todos')
 
@@ -254,7 +256,7 @@ export default function Sidebar({
       {/* Footer com Botão Criar Chamado Crítico */}
       <div className="p-6 border-t border-gray-200">
         <button
-          onClick={onCriarChamado}
+          onClick={onCriarChamadoCritico}
           className="w-full px-4 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
         >
           <svg
