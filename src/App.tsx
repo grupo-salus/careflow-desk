@@ -168,7 +168,11 @@ function App() {
             isSidebarOpen ? 'lg:ml-80' : 'lg:ml-0'
           }`}
         >
-          <MainContent chamados={chamados} filtroAtivo={filtroAtivo} />
+          <MainContent 
+            chamados={chamados} 
+            filtroAtivo={filtroAtivo}
+            isSidebarOpen={isSidebarOpen}
+          />
         </div>
       </div>
 

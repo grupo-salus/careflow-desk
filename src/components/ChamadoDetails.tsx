@@ -30,12 +30,14 @@ interface ChamadoDetailsProps {
   chamado: Chamado | null
   isOpen: boolean
   onClose: () => void
+  isSidebarOpen?: boolean
 }
 
 export default function ChamadoDetails({
   chamado,
   isOpen,
-  onClose
+  onClose,
+  isSidebarOpen = false
 }: ChamadoDetailsProps) {
   const [novaMensagem, setNovaMensagem] = useState<string>('')
   const [mensagens, setMensagens] = useState<Mensagem[]>([])
@@ -117,7 +119,7 @@ export default function ChamadoDetails({
 
     const novaMsg: Mensagem = {
       id: Date.now().toString(),
-      autor: 'Técnico',
+      autor: 'Usuário',
       texto: novaMensagem,
       data: new Date().toISOString(),
       tipo: 'usuario'
@@ -142,10 +144,14 @@ export default function ChamadoDetails({
 
   return (
     <React.Fragment>
-      {/* Overlay */}
+      {/* Overlay - Não cobre o sidebar */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity ${
+        className={`fixed bg-black bg-opacity-50 z-40 transition-opacity ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        } ${
+          isSidebarOpen 
+            ? 'inset-0 lg:left-80' 
+            : 'inset-0'
         }`}
         onClick={onClose}
       />
@@ -208,20 +214,28 @@ export default function ChamadoDetails({
         {/* Área de Mensagens - Chat */}
         <div className="flex-1 overflow-y-auto p-2 md:p-4 bg-gray-50 min-h-0">
           <div className="space-y-3 md:space-y-4">
-            {mensagens.map((mensagem) => (
+            {mensagens.map((mensagem) => {
+              // Mensagens do técnico à esquerda, usuário/franqueado à direita
+              const isTecnico = mensagem.autor === 'Técnico'
+              const isUsuario = mensagem.tipo === 'franqueado' || (mensagem.tipo === 'usuario' && !isTecnico)
+              const isSistema = mensagem.tipo === 'sistema'
+              
+              return (
               <div
                 key={mensagem.id}
                 className={`flex ${
-                  mensagem.tipo === 'franqueado' ? 'justify-end' : 'justify-start'
+                  isUsuario ? 'justify-end' : 'justify-start'
                 }`}
               >
                 <div
                   className={`max-w-[85%] md:max-w-[75%] rounded-lg p-2 md:p-3 ${
-                    mensagem.tipo === 'franqueado'
+                    isUsuario
                       ? 'bg-orange-50 border border-orange-200 text-gray-900'
-                      : mensagem.tipo === 'usuario'
+                      : isTecnico
                       ? 'bg-white border border-gray-200 text-gray-900'
-                      : 'bg-blue-100 text-blue-900'
+                      : isSistema
+                      ? 'bg-blue-100 text-blue-900'
+                      : 'bg-white border border-gray-200 text-gray-900'
                   }`}
                 >
                   <div className="flex items-center gap-1.5 md:gap-2 mb-1 flex-wrap">
@@ -237,7 +251,8 @@ export default function ChamadoDetails({
                   </p>
                 </div>
               </div>
-            ))}
+              )
+            })}
             <div ref={messagesEndRef} />
           </div>
         </div>
