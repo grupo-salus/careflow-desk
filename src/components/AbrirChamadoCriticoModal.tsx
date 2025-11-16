@@ -23,6 +23,7 @@ export default function AbrirChamadoCriticoModal({
   const [descricao, setDescricao] = useState<string>('')
   const [anexos, setAnexos] = useState<File[]>([])
   const [aceitouTermos, setAceitouTermos] = useState<boolean>(false)
+  const [isAvisoExpanded, setIsAvisoExpanded] = useState<boolean>(true)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +56,7 @@ export default function AbrirChamadoCriticoModal({
     setDescricao('')
     setAnexos([])
     setAceitouTermos(false)
+    setIsAvisoExpanded(true)
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
@@ -65,6 +67,7 @@ export default function AbrirChamadoCriticoModal({
     setDescricao('')
     setAnexos([])
     setAceitouTermos(false)
+    setIsAvisoExpanded(true)
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
     }
@@ -83,38 +86,18 @@ export default function AbrirChamadoCriticoModal({
 
       {/* Modal */}
       <div className="relative bg-white rounded-lg shadow-2xl w-full h-full md:h-[90vh] md:max-h-[90vh] max-w-6xl flex flex-col z-50 overflow-hidden">
-        {/* Header com aviso crítico */}
-        <div className="flex items-center justify-between p-3 md:p-6 border-b border-red-200 bg-red-50 flex-shrink-0">
-          <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
-              <svg
-                className="w-4 h-4 md:w-6 md:h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                />
-              </svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <h2 className="text-lg md:text-2xl font-bold text-red-900">Abrir Chamado Crítico</h2>
-              <p className="text-xs md:text-sm text-red-700 mt-1">
-                Apenas para casos de extrema urgência que requerem atenção imediata
-              </p>
-            </div>
+        {/* Header */}
+        <div className="flex items-center justify-between p-3 md:p-6 border-b border-gray-200 flex-shrink-0">
+          <div className="flex items-center gap-4">
+            <h2 className="text-lg md:text-2xl font-bold text-gray-900">Abrir Chamado Crítico</h2>
           </div>
           <button
             onClick={handleClose}
-            className="p-2 hover:bg-red-100 rounded transition-colors"
+            className="p-2 hover:bg-gray-100 rounded transition-colors"
             title="Fechar"
           >
             <svg
-              className="w-6 h-6 text-red-600"
+              className="w-6 h-6 text-gray-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -129,42 +112,86 @@ export default function AbrirChamadoCriticoModal({
           </button>
         </div>
 
-        {/* Aviso importante */}
-        <div className="bg-yellow-50 border-b border-yellow-200 p-3 md:p-4 flex-shrink-0">
-          <div className="flex items-start gap-2 md:gap-3">
-            <svg
-              className="w-4 h-4 md:w-5 md:h-5 text-yellow-600 mt-0.5 flex-shrink-0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-xs md:text-sm text-yellow-900 mb-1">
-                Atenção: Chamados Críticos
-              </h3>
-              <p className="text-xs md:text-sm text-yellow-800">
-                Este tipo de chamado é destinado <strong>apenas para casos de extrema urgência</strong> que impactam diretamente as operações críticas do negócio. 
-                Ao criar um chamado crítico, <strong>todos os líderes de cada setor serão notificados automaticamente</strong> para garantir visibilidade máxima e resposta imediata. 
-                Por favor, utilize esta opção com responsabilidade e apenas quando realmente necessário.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Content */}
-        <div className="flex-1 overflow-hidden flex">
-          {/* Formulário Centralizado */}
-          <div className="flex-1 flex flex-col overflow-hidden max-w-4xl mx-auto w-full">
-            {/* Formulário */}
-            <form onSubmit={handleSubmit} className="flex-1 flex flex-col overflow-hidden">
-              <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-4 md:space-y-6">
+        <div className="flex-1 overflow-hidden flex flex-col">
+          {/* Formulário */}
+          <form onSubmit={handleSubmit} className="flex-1 flex flex-col overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-3 md:p-6">
+              <div className="max-w-4xl mx-auto w-full space-y-4 md:space-y-6">
+                {/* Título do Formulário */}
+                <div className="flex items-center gap-2 pb-3 border-b border-gray-200">
+                  <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                  </div>
+                  <h2 className="text-base md:text-lg font-semibold text-gray-900">
+                    Chamado Crítico
+                  </h2>
+                  <span className="px-2 py-1 text-xs font-medium bg-red-100 text-red-700 rounded">
+                    Crítico
+                  </span>
+                </div>
+
+                {/* Aviso Informativo - Acima do Formulário */}
+                <div 
+                  className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 md:p-4 cursor-pointer hover:bg-yellow-100 transition-colors"
+                  onClick={() => setIsAvisoExpanded(!isAvisoExpanded)}
+                >
+                  <div className="flex items-start gap-2">
+                    <svg
+                      className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <h3 className="font-medium text-xs md:text-sm text-yellow-900">
+                          Informações importantes
+                        </h3>
+                        <svg
+                          className={`w-3 h-3 text-yellow-600 transition-transform flex-shrink-0 ${isAvisoExpanded ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                      {isAvisoExpanded && (
+                        <p className="text-xs md:text-sm text-yellow-800 whitespace-pre-line">
+                          Este tipo de chamado é destinado <strong>apenas para casos de extrema urgência</strong> que impactam diretamente as operações críticas do negócio. 
+                          Ao criar um chamado crítico, <strong>todos os líderes de cada setor serão notificados automaticamente</strong> para garantir visibilidade máxima e resposta imediata. 
+                          Por favor, utilize esta opção com responsabilidade e apenas quando realmente necessário.
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
                 {/* Título */}
                 <div>
                   <label htmlFor="titulo" className="block text-xs md:text-sm font-medium text-gray-700 mb-2">
@@ -305,9 +332,10 @@ export default function AbrirChamadoCriticoModal({
                   </label>
                 </div>
               </div>
+            </div>
 
-              {/* Footer com botões */}
-              <div className="border-t border-gray-200 p-3 md:p-6 flex flex-col-reverse md:flex-row items-stretch md:items-center justify-end gap-2 md:gap-3 flex-shrink-0">
+            {/* Footer com botões */}
+            <div className="border-t border-gray-200 p-3 md:p-6 flex flex-col-reverse md:flex-row items-stretch md:items-center justify-end gap-2 md:gap-3 flex-shrink-0">
                 <button
                   type="button"
                   onClick={handleClose}
@@ -322,9 +350,8 @@ export default function AbrirChamadoCriticoModal({
                 >
                   Criar Chamado Crítico
                 </button>
-              </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
