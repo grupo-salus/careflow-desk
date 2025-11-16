@@ -20,7 +20,7 @@ export default function Header() {
             </svg>
           </button>
           <img
-            src="/careflow-logo.png"
+            src={`${import.meta.env.BASE_URL}careflow-logo.png`}
             alt="CareFlow Logo"
             className="h-8"
           />
