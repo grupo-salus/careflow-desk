@@ -1,4 +1,4 @@
-import careflowLogo from '../careflow-logo.png'
+import careflowLogo from '@/careflow-logo.png'
 
 export default function Header() {
   return (
