@@ -1,5 +1,3 @@
-import careflowLogo from '@/careflow-logo.png'
-
 export default function Header() {
   return (
     <header className="bg-white border-b border-gray-200">
@@ -22,7 +20,7 @@ export default function Header() {
             </svg>
           </button>
           <img
-            src={careflowLogo}
+            src={`${import.meta.env.BASE_URL}careflow-logo.png`}
             alt="CareFlow Logo"
             className="h-8"
           />
