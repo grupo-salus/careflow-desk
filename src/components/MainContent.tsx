@@ -208,18 +208,18 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
   }
 
   return (
-    <main className="flex-1 p-6 bg-gray-50 min-h-[calc(100vh-73px)]">
+    <main className="flex-1 p-3 md:p-6 bg-gray-50 min-h-[calc(100vh-73px)] overflow-x-hidden">
       {/* Título com ícone - FORA do container branco */}
       <div className="mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center">
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-orange-500 flex items-center justify-center">
             <img
               src="https://api.iconify.design/mdi:headset.svg?color=%23ffffff"
               alt="Service Desk"
-              className="w-6 h-6"
+              className="w-4 h-4 md:w-6 md:h-6"
             />
           </div>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-xl md:text-2xl font-bold">
             <span className="text-gray-900">CareFlow</span>
             <span className="text-orange-500">Desk</span>
           </h1>
@@ -227,15 +227,15 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
       </div>
 
       {/* Container branco com todo o conteúdo */}
-      <div className="bg-white rounded-lg shadow-sm p-6 flex flex-col max-h-[calc(100vh-200px)]">
+      <div className="bg-white rounded-lg shadow-sm p-3 md:p-6 flex flex-col max-h-[calc(100vh-200px)]">
         <div className="flex-1 overflow-y-auto">
-        <div className="mb-6 flex items-center gap-6">
-          <p className="text-gray-600">
+        <div className="mb-4 md:mb-6 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+          <p className="text-sm md:text-base text-gray-600">
             {chamadosFiltrados.length} chamado{chamadosFiltrados.length !== 1 ? 's' : ''} encontrado{chamadosFiltrados.length !== 1 ? 's' : ''}
           </p>
 
           {/* Totalizadores inline */}
-          <div className="flex items-center gap-4 text-sm flex-wrap">
+          <div className="flex items-center gap-2 md:gap-4 text-xs md:text-sm flex-wrap">
             <span className="bg-gray-50 px-3 py-1.5 rounded text-gray-600">
               Total: <span className="font-semibold text-gray-900">{chamados.length}</span>
             </span>
@@ -268,9 +268,9 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
         </div>
 
       {/* Filtros, Pesquisa e Ordenação */}
-      <div className="mb-6 flex items-center gap-4">
+      <div className="mb-4 md:mb-6 flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
         {/* Filtro por Status - Esquerda */}
-        <div className="w-[280px]">
+        <div className="w-full md:w-[280px]">
           <Select
             value={statusFiltro}
             onChange={setStatusFiltro}
@@ -303,7 +303,7 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
         </div>
 
         {/* Barra de Pesquisa - Centro */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative w-full md:w-auto">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <svg
               className="w-4 h-4 text-gray-400"
@@ -329,8 +329,8 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
         </div>
 
         {/* Ordenação e Visualização - Direita */}
-        <div className="flex items-center gap-3">
-          <div className="w-[200px]">
+        <div className="flex items-center gap-3 w-full md:w-auto">
+          <div className="flex-1 md:flex-none md:w-[200px]">
             <Select
               value={ordenacao}
               onChange={setOrdenacao}
@@ -412,7 +412,7 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
 
       {/* Visualização em Cards */}
       {modoVisualizacao === 'cards' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
           {chamadosPaginados.map((chamado) => {
             const slaAtrasado = isSlaAtrasado(chamado.sla)
             const tempoSla = calcularTempoSla(chamado.sla)
@@ -421,24 +421,24 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
             <div
               key={chamado.id}
               onClick={() => handleChamadoClick(chamado)}
-              className="rounded-lg p-4 cursor-pointer border border-gray-200 bg-white card-hover-gradient"
+              className="rounded-lg p-3 md:p-4 cursor-pointer border border-gray-200 bg-white card-hover-gradient"
             >
             {/* Header com ID e Badges */}
-            <div className="flex items-start justify-between mb-3">
-              <span className="text-xs font-mono text-gray-500">{chamado.id}</span>
-              <div className="flex items-center gap-2">
+            <div className="flex items-start justify-between mb-2 md:mb-3 gap-2">
+              <span className="text-xs font-mono text-gray-500 flex-shrink-0">{chamado.id}</span>
+              <div className="flex items-center gap-1 md:gap-2 flex-wrap justify-end">
                 {chamado.prioridade === 'crítico' && (
-                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700 border border-red-200">
+                  <span className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium bg-red-100 text-red-700 border border-red-200">
                     Crítico
                   </span>
                 )}
                 <span
-                  className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                  className={`px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium ${getStatusColor(
                     chamado.status
                   )}`}
                 >
                   {chamado.status === 'aguardando_retorno' 
-                    ? 'AGUARDANDO RETORNO DO FRANQUEADO'
+                    ? 'AGUARDANDO RETORNO'
                     : chamado.status === 'em_andamento'
                     ? 'EM ANDAMENTO'
                     : chamado.status.toUpperCase()}
@@ -447,12 +447,12 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
             </div>
 
             {/* Título */}
-            <h3 className="text-base font-semibold text-gray-900 mb-2 line-clamp-2">
+            <h3 className="text-sm md:text-base font-semibold text-gray-900 mb-2 line-clamp-2">
               {chamado.titulo}
             </h3>
 
             {/* Descrição */}
-            <p className="text-sm text-gray-600 mb-4 line-clamp-1">
+            <p className="text-xs md:text-sm text-gray-600 mb-3 md:mb-4 line-clamp-1">
               {chamado.descricao}
             </p>
 
@@ -544,17 +544,17 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
 
             {/* Visualização em Tabela */}
             {modoVisualizacao === 'tabela' && (
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
+              <div className="overflow-x-auto -mx-3 md:mx-0">
+                <table className="w-full border-collapse min-w-[800px]">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase">ID</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase">Título</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase">Prioridade</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase">Status</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase">SLA</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase">Criado</th>
-                      <th className="text-left py-3 px-4 text-xs font-semibold text-gray-600 uppercase">Atualizado</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">ID</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Título</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Prioridade</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Status</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">SLA</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Criado</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Atualizado</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -568,45 +568,45 @@ export default function MainContent({ chamados, filtroAtivo }: MainContentProps)
                     onClick={() => handleChamadoClick(chamado)}
                     className="border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
                   >
-                    <td className="py-3 px-4 text-xs font-mono text-gray-500">{chamado.id}</td>
-                    <td className="py-3 px-4">
+                    <td className="py-2 md:py-3 px-2 md:px-4 text-xs font-mono text-gray-500">{chamado.id}</td>
+                    <td className="py-2 md:py-3 px-2 md:px-4">
                       <div className="max-w-xs">
-                        <div className="text-sm font-medium text-gray-900 truncate">{chamado.titulo}</div>
-                        <div className="text-xs text-gray-500 truncate mt-0.5">{chamado.descricao}</div>
+                        <div className="text-xs md:text-sm font-medium text-gray-900 truncate">{chamado.titulo}</div>
+                        <div className="text-[10px] md:text-xs text-gray-500 truncate mt-0.5">{chamado.descricao}</div>
                       </div>
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-2 md:py-3 px-2 md:px-4">
                       <span className={`text-xs font-medium ${getPrioridadeColor(chamado.prioridade)}`}>
                         {getPrioridadeLabel(chamado.prioridade)}
                       </span>
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-2 md:py-3 px-2 md:px-4">
                       <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(
+                        className={`px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium ${getStatusColor(
                           chamado.status
                         )}`}
                       >
                         {chamado.status === 'aguardando_retorno' 
-                          ? 'AGUARDANDO RETORNO DO FRANQUEADO'
+                          ? 'AGUARDANDO RETORNO'
                           : chamado.status === 'em_andamento'
                           ? 'EM ANDAMENTO'
                           : chamado.status.toUpperCase()}
                       </span>
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-2 md:py-3 px-2 md:px-4">
                       <div className={`text-xs font-medium ${
                         slaAtrasado ? 'text-red-600' : tempoSla.atrasado ? 'text-orange-600' : 'text-gray-600'
                       }`}>
-                        <div>{tempoSla.texto}</div>
+                        <div className="text-[10px] md:text-xs">{tempoSla.texto}</div>
                         {slaAtrasado && (
-                          <span className="mt-1 inline-block px-1.5 py-0.5 bg-red-100 text-red-700 rounded text-xs font-semibold">
+                          <span className="mt-1 inline-block px-1 md:px-1.5 py-0.5 bg-red-100 text-red-700 rounded text-[10px] md:text-xs font-semibold">
                             ATRASADO
                           </span>
                         )}
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-xs text-gray-500">{formatarData(chamado.dataAbertura)}</td>
-                    <td className="py-3 px-4 text-xs text-gray-500">{formatarData(chamado.dataAtualizacao)}</td>
+                    <td className="py-2 md:py-3 px-2 md:px-4 text-[10px] md:text-xs text-gray-500">{formatarData(chamado.dataAbertura)}</td>
+                    <td className="py-2 md:py-3 px-2 md:px-4 text-[10px] md:text-xs text-gray-500">{formatarData(chamado.dataAtualizacao)}</td>
                   </tr>
                 )
               })}

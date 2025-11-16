@@ -1,28 +1,57 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface SidebarProps {
+  isOpen?: boolean
+  onClose?: () => void
   onFilterChange?: (filter: string) => void
   onCriarChamado?: () => void
   onCriarChamadoCritico?: () => void
 }
 
 export default function Sidebar({ 
+  isOpen = false,
+  onClose,
   onFilterChange, 
   onCriarChamado,
   onCriarChamadoCritico
 }: SidebarProps) {
   const [filtroAtivo, setFiltroAtivo] = useState<string>('todos')
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const handleFilterClick = (filtro: string) => {
     setFiltroAtivo(filtro)
     onFilterChange?.(filtro)
+    // Fechar sidebar em mobile após selecionar filtro
+    if (window.innerWidth < 1024) {
+      onClose?.()
+    }
   }
 
   return (
-    <aside className="w-80 bg-white border-r border-gray-200 min-h-[calc(100vh-73px)] flex flex-col">
-      <div className="p-6 flex-1">
+    <>
+      {/* Sidebar */}
+      <aside
+        className={`
+          fixed top-[73px] left-0 h-[calc(100vh-73px)]
+          w-80 bg-white border-r border-gray-200 
+          flex flex-col z-50
+          transform transition-transform duration-300 ease-in-out
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        `}
+      >
+        <div className="p-6 flex-1">
         <div className="flex items-center gap-2 mb-6">
           <svg
             className="w-5 h-5 text-gray-600"
@@ -42,7 +71,12 @@ export default function Sidebar({
 
         {/* Botão Criar Chamado */}
         <button
-          onClick={onCriarChamado}
+          onClick={() => {
+            onCriarChamado?.()
+            if (window.innerWidth < 1024) {
+              onClose?.()
+            }
+          }}
           className="w-full mb-4 px-4 py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
         >
           <svg
@@ -256,7 +290,12 @@ export default function Sidebar({
       {/* Footer com Botão Criar Chamado Crítico */}
       <div className="p-6 border-t border-gray-200">
         <button
-          onClick={onCriarChamadoCritico}
+          onClick={() => {
+            onCriarChamadoCritico?.()
+            if (window.innerWidth < 1024) {
+              onClose?.()
+            }
+          }}
           className="w-full px-4 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
         >
           <svg
@@ -278,6 +317,7 @@ export default function Sidebar({
         </button>
       </div>
     </aside>
+    </>
   )
 }
 

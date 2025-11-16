@@ -36,6 +36,7 @@ function App() {
   const [chamados, setChamados] = useState<Chamado[]>(chamadosData as Chamado[])
   const [isAbrirChamadoOpen, setIsAbrirChamadoOpen] = useState<boolean>(false)
   const [isAbrirChamadoCriticoOpen, setIsAbrirChamadoCriticoOpen] = useState<boolean>(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true)
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'warning' | 'info'; isVisible: boolean }>({
     message: '',
     type: 'success',
@@ -149,15 +150,26 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <div className="flex">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
+      <Header 
+        isSidebarOpen={isSidebarOpen}
+        onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
+      />
+      <div className="flex relative overflow-x-hidden">
         <Sidebar
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
           onFilterChange={handleFilterChange}
           onCriarChamado={handleCriarChamado}
           onCriarChamadoCritico={handleCriarChamadoCritico}
         />
-        <MainContent chamados={chamados} filtroAtivo={filtroAtivo} />
+        <div 
+          className={`flex-1 transition-all duration-300 min-w-0 ${
+            isSidebarOpen ? 'lg:ml-80' : 'lg:ml-0'
+          }`}
+        >
+          <MainContent chamados={chamados} filtroAtivo={filtroAtivo} />
+        </div>
       </div>
 
       {/* Modal de Abertura de Chamado */}
