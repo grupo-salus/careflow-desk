@@ -44,6 +44,14 @@ test-results/
 *.gif
 *.webp
 
+# Exceptions: allow images in public folder
+!public/*.png
+!public/*.jpg
+!public/*.jpeg
+!public/*.gif
+!public/*.webp
+!public/*.svg
+
 # Environment variables
 .env
 .env.local
