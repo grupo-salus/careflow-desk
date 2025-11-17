@@ -321,6 +321,30 @@ export default function Sidebar({
             </svg>
             <span className={isCollapsed ? 'block lg:hidden' : 'block'}>Mensagens Não Lidas</span>
           </button>
+          <button
+            onClick={() => handleFilterClick('projetos')}
+            className={`w-full ${isCollapsed ? 'text-left px-4 lg:text-center lg:px-2' : 'text-left px-4'} py-2 text-sm transition-all duration-200 flex items-center ${isCollapsed ? 'gap-2 lg:justify-center' : 'gap-2'} relative border-b-2 ${
+              filtroAtivo === 'projetos'
+                ? 'text-orange-500 border-orange-500'
+                : 'text-gray-700 hover:text-orange-500 border-transparent'
+            }`}
+            title={isCollapsed ? "Projetos" : undefined}
+          >
+            <svg
+              className={isCollapsed ? "w-4 h-4 lg:w-5 lg:h-5" : "w-4 h-4"}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              />
+            </svg>
+            <span className={isCollapsed ? 'block lg:hidden' : 'block'}>Projetos</span>
+          </button>
         </div>
       </div>
 
