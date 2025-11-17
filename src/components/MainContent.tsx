@@ -458,19 +458,19 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
               className="rounded-lg p-3 md:p-4 cursor-pointer border border-gray-200 bg-white card-hover-gradient"
             >
             {/* Header com ID e Badges */}
-            <div className="flex items-start justify-between mb-2 md:mb-3 gap-2">
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <span className="text-xs font-mono text-gray-500">{chamado.id}</span>
+            <div className="flex items-start justify-between mb-2 md:mb-3 gap-2 min-w-0">
+              <div className="flex items-center gap-2 flex-shrink-0 min-w-0">
+                <span className="text-xs font-mono text-gray-500 flex-shrink-0">{chamado.id}</span>
                 {chamado.projeto && (
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-medium" title="Projeto">
-                    <svg className="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-medium flex-shrink-0" title="Projeto">
+                    <svg className="w-3 h-3 mr-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
-                    <span>Projeto</span>
+                    <span className="whitespace-nowrap">Projeto</span>
                   </span>
                 )}
                 {temRespostaNaoLida(chamado) && (
-                  <div className="relative">
+                  <div className="relative flex-shrink-0">
                     <svg
                       className="w-4 h-4 text-orange-500"
                       fill="none"
@@ -488,16 +488,21 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                   </div>
                 )}
               </div>
-              <div className="flex items-center gap-1 md:gap-2 flex-wrap justify-end">
+              <div className="flex items-center gap-1 md:gap-2 flex-wrap justify-end min-w-0 flex-shrink">
                 {chamado.prioridade === 'crítico' && (
-                  <span className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium bg-red-100 text-red-700 border border-red-200">
+                  <span className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium bg-red-100 text-red-700 border border-red-200 whitespace-nowrap flex-shrink-0">
                     Crítico
                   </span>
                 )}
                 <span
-                  className={`inline-block w-[140px] md:w-[160px] px-1.5 md:px-2 py-0.5 md:py-1 rounded-md text-[10px] md:text-xs font-medium text-center ${getStatusColor(
+                  className={`inline-block max-w-full w-[120px] sm:w-[140px] md:w-[160px] px-1 md:px-1.5 py-0.5 md:py-1 rounded-md text-[9px] sm:text-[10px] md:text-xs font-medium text-center whitespace-nowrap overflow-hidden text-ellipsis ${getStatusColor(
                     chamado.status
                   )}`}
+                  title={chamado.status === 'aguardando_retorno' 
+                    ? 'AGUARDANDO RETORNO'
+                    : chamado.status === 'em_andamento'
+                    ? 'EM ANDAMENTO'
+                    : chamado.status.toUpperCase()}
                 >
                   {chamado.status === 'aguardando_retorno' 
                     ? 'AGUARDANDO RETORNO'
@@ -535,9 +540,9 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                   />
                 </svg>
                 <div className="flex flex-col md:flex-row md:items-center md:gap-1.5 flex-1">
-                  <span>Criado: {formatarData(chamado.dataAbertura)}</span>
+                  <span className="whitespace-nowrap">Criado: {formatarData(chamado.dataAbertura)}</span>
                   <span className="hidden md:inline text-gray-400">-</span>
-                  <span className="font-medium text-gray-700">{chamado.usuarioCriacao || 'Franqueado'}</span>
+                  <span className="font-medium text-gray-700 md:mt-0 mt-0.5">{chamado.usuarioCriacao || 'Franqueado'}</span>
                 </div>
               </div>
               <div className="flex items-start gap-2 text-xs text-gray-500">
@@ -555,9 +560,9 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                   />
                 </svg>
                 <div className="flex flex-col md:flex-row md:items-center md:gap-1.5 flex-1">
-                  <span>Última atualização: {formatarData(chamado.dataAtualizacao)}</span>
+                  <span className="whitespace-nowrap">Última atualização: {formatarData(chamado.dataAtualizacao)}</span>
                   <span className="hidden md:inline text-gray-400">-</span>
-                  <span className="font-medium text-gray-700">{chamado.usuarioAtualizacao || 'Franqueado'}</span>
+                  <span className="font-medium text-gray-700 md:mt-0 mt-0.5">{chamado.usuarioAtualizacao || 'Franqueado'}</span>
                 </div>
               </div>
               <div className={`flex items-center gap-2 text-xs font-medium ${
@@ -677,23 +682,19 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                       </div>
                     </td>
                     <td className="py-2 md:py-3 px-2 md:px-4">
-                      <div className="flex flex-col">
-                        <span className="text-[10px] md:text-xs font-medium text-gray-700">
-                          {chamado.usuarioCriacao || 'Franqueado'}
-                        </span>
-                        <span className="text-[10px] md:text-xs text-gray-500">
-                          {formatarData(chamado.dataAbertura)}
-                        </span>
+                      <div className="text-[10px] md:text-xs text-gray-500 whitespace-nowrap">
+                        {formatarData(chamado.dataAbertura)}
+                      </div>
+                      <div className="text-[10px] md:text-xs font-medium text-gray-700 whitespace-nowrap mt-0.5">
+                        {chamado.usuarioCriacao || 'Franqueado'}
                       </div>
                     </td>
                     <td className="py-2 md:py-3 px-2 md:px-4">
-                      <div className="flex flex-col">
-                        <span className="text-[10px] md:text-xs font-medium text-gray-700">
-                          {chamado.usuarioAtualizacao || 'Franqueado'}
-                        </span>
-                        <span className="text-[10px] md:text-xs text-gray-500">
-                          {formatarData(chamado.dataAtualizacao)}
-                        </span>
+                      <div className="text-[10px] md:text-xs text-gray-500 whitespace-nowrap">
+                        {formatarData(chamado.dataAtualizacao)}
+                      </div>
+                      <div className="text-[10px] md:text-xs font-medium text-gray-700 whitespace-nowrap mt-0.5">
+                        {chamado.usuarioAtualizacao || 'Franqueado'}
                       </div>
                     </td>
                     <td className="py-2 md:py-3 px-2 md:px-4">
