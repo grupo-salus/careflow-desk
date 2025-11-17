@@ -481,7 +481,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                   </span>
                 )}
                 <span
-                  className={`px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium ${getStatusColor(
+                  className={`inline-block w-[140px] md:w-[160px] px-1.5 md:px-2 py-0.5 md:py-1 rounded-md text-[10px] md:text-xs font-medium text-center ${getStatusColor(
                     chamado.status
                   )}`}
                 >
@@ -632,7 +632,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                     </td>
                     <td className="py-2 md:py-3 px-2 md:px-4">
                       <span
-                        className={`px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium ${getStatusColor(
+                        className={`inline-block w-[140px] md:w-[160px] px-1.5 md:px-2 py-0.5 md:py-1 rounded-md text-[10px] md:text-xs font-medium text-center ${getStatusColor(
                           chamado.status
                         )}`}
                       >
@@ -674,7 +674,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                       {temRespostaNaoLida(chamado) ? (
                         <button
                           onClick={(e) => handleVerResposta(e, chamado)}
-                          className="px-2 md:px-3 py-1 md:py-1.5 bg-orange-500 text-white text-[10px] md:text-xs font-medium rounded hover:bg-orange-600 transition-colors flex items-center gap-1.5 relative"
+                          className="w-[130px] md:w-[150px] px-2 md:px-3 py-1 md:py-1.5 bg-orange-500 text-white text-[10px] md:text-xs font-medium rounded hover:bg-orange-600 transition-colors flex items-center justify-center gap-1.5 relative"
                         >
                           <svg
                             className="w-3 h-3 md:w-4 md:h-4"
@@ -695,7 +695,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                       ) : (
                         <button
                           onClick={(e) => handleVerResposta(e, chamado)}
-                          className="px-2 md:px-3 py-1 md:py-1.5 bg-gray-100 text-gray-700 text-[10px] md:text-xs font-medium rounded hover:bg-gray-200 transition-colors flex items-center gap-1.5"
+                          className="w-[130px] md:w-[150px] px-2 md:px-3 py-1 md:py-1.5 bg-gray-100 text-gray-700 text-[10px] md:text-xs font-medium rounded hover:bg-gray-200 transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap"
                         >
                           <svg
                             className="w-3 h-3 md:w-4 md:h-4"
