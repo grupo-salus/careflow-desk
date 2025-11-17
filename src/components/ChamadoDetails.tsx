@@ -215,21 +215,21 @@ export default function ChamadoDetails({
         <div className="flex-1 overflow-y-auto p-2 md:p-4 bg-gray-50 min-h-0">
           <div className="space-y-3 md:space-y-4">
             {mensagens.map((mensagem) => {
-              // Mensagens do técnico à esquerda, usuário/franqueado à direita
-              const isTecnico = mensagem.autor === 'Técnico'
-              const isUsuario = mensagem.tipo === 'franqueado' || (mensagem.tipo === 'usuario' && !isTecnico)
+              // Mensagens dos técnicos (tipo 'usuario') à esquerda, franqueado à direita
+              const isTecnico = mensagem.tipo === 'usuario'
+              const isFranqueado = mensagem.tipo === 'franqueado'
               const isSistema = mensagem.tipo === 'sistema'
               
               return (
               <div
                 key={mensagem.id}
                 className={`flex ${
-                  isUsuario ? 'justify-end' : 'justify-start'
+                  isFranqueado ? 'justify-end' : 'justify-start'
                 }`}
               >
                 <div
                   className={`max-w-[85%] md:max-w-[75%] rounded-lg p-2 md:p-3 ${
-                    isUsuario
+                    isFranqueado
                       ? 'bg-orange-50 border border-orange-200 text-gray-900'
                       : isTecnico
                       ? 'bg-white border border-gray-200 text-gray-900'

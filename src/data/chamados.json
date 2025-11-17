@@ -68,7 +68,23 @@
     "tempoResolucao": null,
     "sla": "2025-11-16T18:00:00",
     "usuarioCriacao": "Franqueado",
-    "usuarioAtualizacao": "Franqueado"
+    "usuarioAtualizacao": "Franqueado",
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Sul - Curitiba",
+        "texto": "Necessário criar acesso completo para Maria Santos, nova recepcionista. Precisa de permissões para agendamento e cadastro de pacientes.",
+        "data": "2025-11-15T09:00:00",
+        "tipo": "franqueado"
+      },
+      {
+        "id": "2",
+        "autor": "Analista de Suporte",
+        "texto": "Olá! Recebemos sua solicitação. O acesso foi criado com sucesso. Por favor, verifique se está funcionando corretamente.",
+        "data": "2025-11-15T14:30:00",
+        "tipo": "usuario"
+      }
+    ]
   },
   {
     "id": "CH-004",
@@ -162,7 +178,23 @@
     "tempoResolucao": null,
     "sla": "2025-11-16T16:00:00",
     "usuarioCriacao": "Franqueado",
-    "usuarioAtualizacao": "Analista de Suporte"
+    "usuarioAtualizacao": "Analista de Suporte",
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Norte - Belo Horizonte",
+        "texto": "Como cadastrar pacientes menores de idade? O sistema está pedindo CPF mas menores não possuem.",
+        "data": "2025-11-14T16:00:00",
+        "tipo": "franqueado"
+      },
+      {
+        "id": "2",
+        "autor": "Analista de Suporte",
+        "texto": "Para pacientes menores de idade, você pode usar o CPF do responsável ou deixar em branco. O sistema aceita essa configuração. Se precisar de mais ajuda, estou à disposição.",
+        "data": "2025-11-15T09:30:00",
+        "tipo": "usuario"
+      }
+    ]
   },
   {
     "id": "CH-008",
@@ -242,7 +274,23 @@
     "tempoResolucao": null,
     "sla": "2025-11-16T17:00:00",
     "usuarioCriacao": "Franqueado",
-    "usuarioAtualizacao": "Analista de Suporte"
+    "usuarioAtualizacao": "Analista de Suporte",
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Norte - Belo Horizonte",
+        "texto": "Como configurar horários de atendimento diferentes para cada profissional? Não consigo encontrar essa opção.",
+        "data": "2025-11-14T10:00:00",
+        "tipo": "franqueado"
+      },
+      {
+        "id": "2",
+        "autor": "Analista de Suporte",
+        "texto": "Para configurar horários diferentes por profissional, acesse Configurações > Agendamento > Horários por Profissional. Lá você pode definir os horários específicos de cada um.",
+        "data": "2025-11-14T15:00:00",
+        "tipo": "usuario"
+      }
+    ]
   },
   {
     "id": "CH-013",

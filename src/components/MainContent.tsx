@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from '@/components/Select'
 import Pagination from '@/components/Pagination'
 import ChamadoDetails from '@/components/ChamadoDetails'
@@ -45,24 +45,43 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [chamadoSelecionado, setChamadoSelecionado] = useState<Chamado | null>(null)
   const [isDetailsOpen, setIsDetailsOpen] = useState<boolean>(false)
+  const [chamadosVisualizados, setChamadosVisualizados] = useState<Set<string>>(new Set())
   const itemsPerPage = 10
+
+  // Verificar se há resposta não lida
+  const temRespostaNaoLida = (chamado: Chamado): boolean => {
+    // Se o status é "aguardando_retorno" e há mensagens do tipo "usuario" (respostas do suporte)
+    if (chamado.status === 'aguardando_retorno' && chamado.mensagens) {
+      const temRespostaSuporte = chamado.mensagens.some(msg => msg.tipo === 'usuario')
+      // Se tem resposta do suporte e o chamado não foi visualizado, há resposta não lida
+      return temRespostaSuporte && !chamadosVisualizados.has(chamado.id)
+    }
+    return false
+  }
 
   const handleChamadoClick = (chamado: Chamado) => {
     setChamadoSelecionado(chamado)
     setIsDetailsOpen(true)
+    // Marcar como visualizado quando abrir os detalhes
+    setChamadosVisualizados(prev => new Set(prev).add(chamado.id))
   }
 
   const handleCloseDetails = () => {
     setIsDetailsOpen(false)
   }
 
+  const handleVerResposta = (e: React.MouseEvent<HTMLButtonElement>, chamado: Chamado) => {
+    e.stopPropagation() // Prevenir que o clique na linha também seja acionado
+    handleChamadoClick(chamado)
+  }
+
   // Sincronizar o filtro do Select com o filtro do sidebar
   useEffect(() => {
-    if (filtroAtivo !== 'todos' && filtroAtivo !== 'critico' && filtroAtivo !== 'atrasado') {
+    if (filtroAtivo !== 'todos' && filtroAtivo !== 'critico' && filtroAtivo !== 'atrasado' && filtroAtivo !== 'nao_lidas') {
       setStatusFiltro(filtroAtivo)
     } else if (filtroAtivo === 'todos') {
       setStatusFiltro('todos')
-    } else if (filtroAtivo === 'critico' || filtroAtivo === 'atrasado') {
+    } else if (filtroAtivo === 'critico' || filtroAtivo === 'atrasado' || filtroAtivo === 'nao_lidas') {
       setStatusFiltro(filtroAtivo)
     }
   }, [filtroAtivo])
@@ -81,6 +100,10 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
         const dataSla = new Date(c.sla)
         return agora > dataSla
       })
+    }
+    // Filtro por mensagens não lidas
+    else if (filtroAtivo === 'nao_lidas' || statusFiltro === 'nao_lidas') {
+      resultado = resultado.filter(c => temRespostaNaoLida(c))
     }
     // Filtro por status (do sidebar ou do topo)
     else if (filtroAtivo !== 'todos') {
@@ -301,6 +324,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                     { value: 'cancelado', label: 'Cancelado' },
                     { value: 'critico', label: 'Crítico' },
                     { value: 'atrasado', label: 'Atrasados' },
+                    { value: 'nao_lidas', label: 'Mensagens Não Lidas' },
                   ]}
           />
         </div>
@@ -428,7 +452,27 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
             >
             {/* Header com ID e Badges */}
             <div className="flex items-start justify-between mb-2 md:mb-3 gap-2">
-              <span className="text-xs font-mono text-gray-500 flex-shrink-0">{chamado.id}</span>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="text-xs font-mono text-gray-500">{chamado.id}</span>
+                {temRespostaNaoLida(chamado) && (
+                  <div className="relative">
+                    <svg
+                      className="w-4 h-4 text-orange-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                  </div>
+                )}
+              </div>
               <div className="flex items-center gap-1 md:gap-2 flex-wrap justify-end">
                 {chamado.prioridade === 'crítico' && (
                   <span className="px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium bg-red-100 text-red-700 border border-red-200">
@@ -564,6 +608,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                       <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">SLA</th>
                       <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Criado</th>
                       <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Atualizado</th>
+                      <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -633,6 +678,56 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                           {formatarData(chamado.dataAtualizacao)}
                         </span>
                       </div>
+                    </td>
+                    <td className="py-2 md:py-3 px-2 md:px-4">
+                      {temRespostaNaoLida(chamado) ? (
+                        <button
+                          onClick={(e) => handleVerResposta(e, chamado)}
+                          className="px-2 md:px-3 py-1 md:py-1.5 bg-orange-500 text-white text-[10px] md:text-xs font-medium rounded hover:bg-orange-600 transition-colors flex items-center gap-1.5 relative"
+                        >
+                          <svg
+                            className="w-3 h-3 md:w-4 md:h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            />
+                          </svg>
+                          <span>Ver Resposta</span>
+                          <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={(e) => handleVerResposta(e, chamado)}
+                          className="px-2 md:px-3 py-1 md:py-1.5 bg-gray-100 text-gray-700 text-[10px] md:text-xs font-medium rounded hover:bg-gray-200 transition-colors flex items-center gap-1.5"
+                        >
+                          <svg
+                            className="w-3 h-3 md:w-4 md:h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                            />
+                          </svg>
+                          <span>Visualizar Chamado</span>
+                        </button>
+                      )}
                     </td>
                   </tr>
                 )
