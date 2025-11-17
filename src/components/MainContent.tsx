@@ -308,7 +308,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
             onChange={setStatusFiltro}
             icon={
               <svg
-                className="w-4 h-4"
+                className={`w-4 h-4 ${(filtroAtivo !== 'todos' || statusFiltro !== 'todos') ? 'text-orange-500' : ''}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -610,7 +610,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
               <div className="overflow-x-auto -mx-3 md:mx-0">
                 <table className="w-full border-collapse min-w-[800px]">
                   <thead>
-                    <tr className="border-b border-gray-200">
+                    <tr className="border-b border-gray-200 bg-orange-50">
                       <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">ID</th>
                       <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Título</th>
                       <th className="text-left py-2 md:py-3 px-2 md:px-4 text-xs font-semibold text-gray-600 uppercase">Prioridade</th>

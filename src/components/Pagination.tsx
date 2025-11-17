@@ -74,7 +74,7 @@ export default function Pagination({
   const pageNumbers = getPageNumbers()
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0 mt-4 md:mt-6">
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0 mt-4 md:mt-6 bg-orange-50 p-3 md:p-4 rounded-md">
       <p className="text-xs md:text-sm text-gray-600 text-center md:text-left">
         Mostrando {startItem} a {endItem} de {totalItems} chamado{totalItems !== 1 ? 's' : ''}
       </p>
