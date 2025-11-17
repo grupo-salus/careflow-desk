@@ -130,7 +130,7 @@ export default function Header({ isSidebarOpen, onToggleSidebar }: HeaderProps) 
                   className="w-4 h-4"
                 />
               </div>
-              <span><span className="text-gray-900">CareFlow</span><span className="text-orange-500">Desk</span></span>
+              <span><span className="text-gray-900">CareFlow</span><span className="text-orange-500">Nexus</span></span>
             </a>
           </nav>
 
@@ -289,7 +289,7 @@ export default function Header({ isSidebarOpen, onToggleSidebar }: HeaderProps) 
                     className="w-4 h-4"
                   />
                 </div>
-                <span><span className="text-gray-900">CareFlow</span><span className="text-orange-500">Desk</span></span>
+                <span><span className="text-gray-900">CareFlow</span><span className="text-orange-500">Nexus</span></span>
               </a>
             </nav>
 

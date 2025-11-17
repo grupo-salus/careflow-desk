@@ -51,7 +51,7 @@ export default function Pagination({
           pages.push(currentPage - 1, currentPage, currentPage + 1)
         }
       } else {
-        // Desktop: mostrar mais páginas
+        // DeskTop: mostrar mais páginas
         if (currentPage <= 3) {
           for (let i = 1; i <= 5; i++) {
             pages.push(i)

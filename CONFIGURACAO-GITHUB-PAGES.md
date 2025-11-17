@@ -35,18 +35,18 @@ Após configurar para usar GitHub Actions, o workflow irá:
 ## 🌐 URL do Site
 
 Após o deploy, o site estará disponível em:
-**https://grupo-salus.github.io/careflow-desk/**
+**https://grupo-salus.github.io/careflow-Nexus/**
 
 ## ⚠️ Importante
 
 - O GitHub Pages **deve** estar configurado para usar **GitHub Actions**, não a branch `main`
 - O arquivo `.nojekyll` é criado automaticamente pelo workflow
-- O `base: '/careflow-desk/'` no `vite.config.ts` está correto
+- O `base: '/careflow-Nexus/'` no `vite.config.ts` está correto
 
 ## 🔍 Verificação
 
 Após configurar, você deve ver:
 - ✅ O site React funcionando (não o README)
 - ✅ Todos os componentes carregando corretamente
-- ✅ Assets (CSS, JS) carregando com o caminho `/careflow-desk/assets/...`
+- ✅ Assets (CSS, JS) carregando com o caminho `/careflow-Nexus/assets/...`
 

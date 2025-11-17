@@ -1,6 +1,6 @@
-# CareFlow Desk
+# Careflow Nexus
 
-Plataforma de service desk para franqueados visualizarem e gerenciarem seus chamados. Integração com API do Jira para buscar informações de tickets.
+Plataforma de service Nexus para franqueados visualizarem e gerenciarem seus chamados. Integração com API do Jira para buscar informações de tickets.
 
 ## Sobre o Projeto
 
