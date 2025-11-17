@@ -29,6 +29,7 @@ interface Chamado {
   usuarioCriacao?: string
   usuarioAtualizacao?: string
   mensagens?: Mensagem[]
+  projeto?: boolean
 }
 
 interface MainContentProps {
@@ -78,11 +79,11 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
 
   // Sincronizar o filtro do Select com o filtro do sidebar
   useEffect(() => {
-    if (filtroAtivo !== 'todos' && filtroAtivo !== 'critico' && filtroAtivo !== 'atrasado' && filtroAtivo !== 'nao_lidas') {
+    if (filtroAtivo !== 'todos' && filtroAtivo !== 'critico' && filtroAtivo !== 'atrasado' && filtroAtivo !== 'nao_lidas' && filtroAtivo !== 'projetos') {
       setStatusFiltro(filtroAtivo)
     } else if (filtroAtivo === 'todos') {
       setStatusFiltro('todos')
-    } else if (filtroAtivo === 'critico' || filtroAtivo === 'atrasado' || filtroAtivo === 'nao_lidas') {
+    } else if (filtroAtivo === 'critico' || filtroAtivo === 'atrasado' || filtroAtivo === 'nao_lidas' || filtroAtivo === 'projetos') {
       setStatusFiltro(filtroAtivo)
     }
   }, [filtroAtivo])
@@ -105,6 +106,10 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
     // Filtro por mensagens não lidas
     else if (filtroAtivo === 'nao_lidas' || statusFiltro === 'nao_lidas') {
       resultado = resultado.filter(c => temRespostaNaoLida(c))
+    }
+    // Filtro por projetos
+    else if (filtroAtivo === 'projetos' || statusFiltro === 'projetos') {
+      resultado = resultado.filter(c => c.projeto === true)
     }
     // Filtro por status (do sidebar ou do topo)
     else if (filtroAtivo !== 'todos') {
@@ -326,6 +331,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                     { value: 'critico', label: 'Crítico' },
                     { value: 'atrasado', label: 'Atrasados' },
                     { value: 'nao_lidas', label: 'Mensagens Não Lidas' },
+                    { value: 'projetos', label: 'Projetos' },
                   ]}
           />
         </div>
@@ -455,6 +461,14 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
             <div className="flex items-start justify-between mb-2 md:mb-3 gap-2">
               <div className="flex items-center gap-2 flex-shrink-0">
                 <span className="text-xs font-mono text-gray-500">{chamado.id}</span>
+                {chamado.projeto && (
+                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-medium" title="Projeto">
+                    <svg className="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    <span>Projeto</span>
+                  </span>
+                )}
                 {temRespostaNaoLida(chamado) && (
                   <div className="relative">
                     <svg
@@ -618,7 +632,19 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                     onClick={() => handleChamadoClick(chamado)}
                     className="border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
                   >
-                    <td className="py-2 md:py-3 px-2 md:px-4 text-xs font-mono text-gray-500">{chamado.id}</td>
+                    <td className="py-2 md:py-3 px-2 md:px-4">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-mono text-gray-500">{chamado.id}</span>
+                        {chamado.projeto && (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-medium" title="Projeto">
+                            <svg className="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                            <span>Projeto</span>
+                          </span>
+                        )}
+                      </div>
+                    </td>
                     <td className="py-2 md:py-3 px-2 md:px-4">
                       <div className="max-w-xs">
                         <div className="text-xs md:text-sm font-medium text-gray-900 truncate">{chamado.titulo}</div>

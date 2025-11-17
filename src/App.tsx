@@ -31,6 +31,7 @@ interface Chamado {
   usuarioCriacao?: string
   usuarioAtualizacao?: string
   mensagens?: Mensagem[]
+  projeto?: boolean
 }
 
 function App() {

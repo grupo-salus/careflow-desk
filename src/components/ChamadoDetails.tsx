@@ -24,6 +24,7 @@ interface Chamado {
   tempoResolucao: string | null
   sla: string
   mensagens?: Mensagem[]
+  projeto?: boolean
 }
 
 interface ChamadoDetailsProps {

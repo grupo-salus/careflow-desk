@@ -226,7 +226,8 @@
     "tempoResolucao": null,
     "sla": "2025-11-20T18:00:00",
     "usuarioCriacao": "Franqueado",
-    "usuarioAtualizacao": "Franqueado"
+    "usuarioAtualizacao": "Franqueado",
+    "projeto": false
   },
   {
     "id": "CH-010",
@@ -307,6 +308,7 @@
     "sla": "2025-11-15T18:00:00",
     "usuarioCriacao": "Franqueado",
     "usuarioAtualizacao": "Analista de Suporte",
+    "projeto": false,
     "mensagens": [
       {
         "id": "1",
@@ -362,6 +364,72 @@
     "sla": "2025-11-16T18:00:00",
     "usuarioCriacao": "Franqueado",
     "usuarioAtualizacao": "Franqueado"
+  },
+  {
+    "id": "CH-016",
+    "titulo": "Implementação de dashboard de métricas e KPIs",
+    "descricao": "Solicitação para desenvolvimento de um novo dashboard que exiba métricas de performance, KPIs operacionais e gráficos interativos para análise de dados da franquia. Inclui visualizações de vendas, atendimentos, produtividade e indicadores financeiros.",
+    "prioridade": "normal",
+    "status": "em_andamento",
+    "categoria": "Sistema",
+    "dataAbertura": "2025-11-10T09:00:00",
+    "dataAtualizacao": "2025-11-15T14:20:00",
+    "franqueado": "Unidade Centro - São Paulo",
+    "responsavel": "Equipe de Desenvolvimento",
+    "tempoResolucao": null,
+    "sla": "2025-12-15T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Desenvolvimento",
+    "projeto": true,
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Centro - São Paulo",
+        "texto": "Solicitação para desenvolvimento de um novo dashboard que exiba métricas de performance, KPIs operacionais e gráficos interativos para análise de dados da franquia. Inclui visualizações de vendas, atendimentos, produtividade e indicadores financeiros.",
+        "data": "2025-11-10T09:00:00",
+        "tipo": "franqueado"
+      },
+      {
+        "id": "2",
+        "autor": "Analista de Desenvolvimento",
+        "texto": "Projeto aprovado! Iniciamos o levantamento de requisitos. O dashboard incluirá: gráficos de vendas mensais, taxa de conversão, tempo médio de atendimento, e indicadores financeiros. Previsão de entrega: 4 semanas.",
+        "data": "2025-11-12T10:30:00",
+        "tipo": "usuario"
+      },
+      {
+        "id": "3",
+        "autor": "Analista de Desenvolvimento",
+        "texto": "Atualização: Layout do dashboard finalizado. Iniciando integração com APIs de dados. Próxima etapa: implementação dos gráficos interativos.",
+        "data": "2025-11-15T14:20:00",
+        "tipo": "usuario"
+      }
+    ]
+  },
+  {
+    "id": "CH-017",
+    "titulo": "Criação de nova tela no módulo de Contas a Pagar",
+    "descricao": "Solicitação para desenvolvimento de uma nova tela no módulo de Contas a Pagar que permita visualização consolidada de fornecedores, filtros avançados por período e categoria, exportação de relatórios em PDF/Excel, e dashboard com indicadores de fluxo de caixa. A tela deve incluir funcionalidades de aprovação em lote e histórico de pagamentos.",
+    "prioridade": "normal",
+    "status": "novo",
+    "categoria": "Sistema",
+    "dataAbertura": "2025-11-14T11:00:00",
+    "dataAtualizacao": "2025-11-14T11:00:00",
+    "franqueado": "Unidade Norte - Belo Horizonte",
+    "responsavel": "Equipe de Desenvolvimento",
+    "tempoResolucao": null,
+    "sla": "2025-12-20T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Franqueado",
+    "projeto": true,
+    "mensagens": [
+      {
+        "id": "1",
+        "autor": "Unidade Norte - Belo Horizonte",
+        "texto": "Solicitação para desenvolvimento de uma nova tela no módulo de Contas a Pagar que permita visualização consolidada de fornecedores, filtros avançados por período e categoria, exportação de relatórios em PDF/Excel, e dashboard com indicadores de fluxo de caixa. A tela deve incluir funcionalidades de aprovação em lote e histórico de pagamentos.",
+        "data": "2025-11-14T11:00:00",
+        "tipo": "franqueado"
+      }
+    ]
   }
 ]
 
