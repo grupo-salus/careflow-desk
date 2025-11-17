@@ -28,6 +28,8 @@ interface Chamado {
   responsavel: string
   tempoResolucao: string | null
   sla: string
+  usuarioCriacao?: string
+  usuarioAtualizacao?: string
   mensagens?: Mensagem[]
 }
 
@@ -84,6 +86,8 @@ function App() {
       responsavel: '',
       tempoResolucao: null,
       sla: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 horas
+      usuarioCriacao: 'Franqueado',
+      usuarioAtualizacao: 'Franqueado',
       mensagens: [
         {
           id: '1',
@@ -129,6 +133,8 @@ function App() {
       responsavel: '',
       tempoResolucao: null,
       sla: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(), // 2 horas para crítico
+      usuarioCriacao: 'Franqueado',
+      usuarioAtualizacao: 'Franqueado',
       mensagens: [
         {
           id: '1',

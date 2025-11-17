@@ -12,6 +12,8 @@
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
     "sla": "2025-11-15T16:30:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte",
     "mensagens": [
       {
         "id": "1",
@@ -48,7 +50,9 @@
     "franqueado": "Unidade Norte - Belo Horizonte",
     "responsavel": "Suporte Nível 1",
     "tempoResolucao": null,
-    "sla": "2025-11-15T12:00:00"
+    "sla": "2025-11-15T12:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte"
   },
   {
     "id": "CH-003",
@@ -62,7 +66,9 @@
     "franqueado": "Unidade Sul - Curitiba",
     "responsavel": "Administração",
     "tempoResolucao": null,
-    "sla": "2025-11-16T18:00:00"
+    "sla": "2025-11-16T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Franqueado"
   },
   {
     "id": "CH-004",
@@ -76,7 +82,9 @@
     "franqueado": "Unidade Leste - Rio de Janeiro",
     "responsavel": "Suporte Nível 1",
     "tempoResolucao": null,
-    "sla": "2025-11-16T17:00:00"
+    "sla": "2025-11-16T17:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte"
   },
   {
     "id": "CH-005",
@@ -91,6 +99,8 @@
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
     "sla": "2025-11-15T17:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte",
     "mensagens": [
       {
         "id": "1",
@@ -134,7 +144,9 @@
     "franqueado": "Unidade Centro - São Paulo",
     "responsavel": "Administração",
     "tempoResolucao": null,
-    "sla": "2025-11-16T18:00:00"
+    "sla": "2025-11-16T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Franqueado"
   },
   {
     "id": "CH-007",
@@ -148,7 +160,9 @@
     "franqueado": "Unidade Norte - Belo Horizonte",
     "responsavel": "Suporte Nível 1",
     "tempoResolucao": null,
-    "sla": "2025-11-16T16:00:00"
+    "sla": "2025-11-16T16:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte"
   },
   {
     "id": "CH-008",
@@ -162,7 +176,9 @@
     "franqueado": "Unidade Sul - Curitiba",
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
-    "sla": "2025-11-16T12:00:00"
+    "sla": "2025-11-16T12:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte"
   },
   {
     "id": "CH-009",
@@ -176,7 +192,9 @@
     "franqueado": "Unidade Leste - Rio de Janeiro",
     "responsavel": "Suporte Nível 1",
     "tempoResolucao": null,
-    "sla": "2025-11-20T18:00:00"
+    "sla": "2025-11-20T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Franqueado"
   },
   {
     "id": "CH-010",
@@ -190,7 +208,9 @@
     "franqueado": "Unidade Oeste - Campinas",
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
-    "sla": "2025-11-15T18:00:00"
+    "sla": "2025-11-15T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Marketing"
   },
   {
     "id": "CH-011",
@@ -204,7 +224,9 @@
     "franqueado": "Unidade Centro - São Paulo",
     "responsavel": "Suporte Nível 1",
     "tempoResolucao": null,
-    "sla": "2025-11-15T16:00:00"
+    "sla": "2025-11-15T16:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Franqueado"
   },
   {
     "id": "CH-012",
@@ -218,7 +240,9 @@
     "franqueado": "Unidade Norte - Belo Horizonte",
     "responsavel": "Suporte Nível 1",
     "tempoResolucao": null,
-    "sla": "2025-11-16T17:00:00"
+    "sla": "2025-11-16T17:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte"
   },
   {
     "id": "CH-013",
@@ -233,6 +257,8 @@
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
     "sla": "2025-11-15T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte",
     "mensagens": [
       {
         "id": "1",
@@ -269,7 +295,9 @@
     "franqueado": "Unidade Leste - Rio de Janeiro",
     "responsavel": "Administração",
     "tempoResolucao": null,
-    "sla": "2025-11-15T12:00:00"
+    "sla": "2025-11-15T12:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Analista de Suporte"
   },
   {
     "id": "CH-015",
@@ -283,7 +311,9 @@
     "franqueado": "Unidade Oeste - Campinas",
     "responsavel": "Equipe Técnica",
     "tempoResolucao": null,
-    "sla": "2025-11-16T18:00:00"
+    "sla": "2025-11-16T18:00:00",
+    "usuarioCriacao": "Franqueado",
+    "usuarioAtualizacao": "Franqueado"
   }
 ]
 

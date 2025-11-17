@@ -26,6 +26,8 @@ interface Chamado {
   responsavel: string
   tempoResolucao: string | null
   sla: string
+  usuarioCriacao?: string
+  usuarioAtualizacao?: string
   mensagens?: Mensagem[]
 }
 
@@ -459,9 +461,9 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
 
             {/* Datas e SLA */}
             <div className="mt-3 pt-3 border-t border-gray-100 space-y-1">
-              <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="flex items-start gap-2 text-xs text-gray-500">
                 <svg
-                  className="w-3 h-3"
+                  className="w-3 h-3 mt-0.5 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -473,12 +475,15 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span className="font-medium">Criado:</span>
-                <span>{formatarData(chamado.dataAbertura)}</span>
+                <div className="flex flex-col md:flex-row md:items-center md:gap-1.5 flex-1">
+                  <span>Criado: {formatarData(chamado.dataAbertura)}</span>
+                  <span className="hidden md:inline text-gray-400">-</span>
+                  <span className="font-medium text-gray-700">{chamado.usuarioCriacao || 'Franqueado'}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="flex items-start gap-2 text-xs text-gray-500">
                 <svg
-                  className="w-3 h-3"
+                  className="w-3 h-3 mt-0.5 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -490,8 +495,11 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                     d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                   />
                 </svg>
-                <span className="font-medium">Última atualização:</span>
-                <span>{formatarData(chamado.dataAtualizacao)}</span>
+                <div className="flex flex-col md:flex-row md:items-center md:gap-1.5 flex-1">
+                  <span>Última atualização: {formatarData(chamado.dataAtualizacao)}</span>
+                  <span className="hidden md:inline text-gray-400">-</span>
+                  <span className="font-medium text-gray-700">{chamado.usuarioAtualizacao || 'Franqueado'}</span>
+                </div>
               </div>
               <div className={`flex items-center gap-2 text-xs font-medium ${
                 slaAtrasado ? 'text-red-600' : tempoSla.atrasado ? 'text-orange-600' : 'text-gray-600'
@@ -606,8 +614,26 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                         )}
                       </div>
                     </td>
-                    <td className="py-2 md:py-3 px-2 md:px-4 text-[10px] md:text-xs text-gray-500">{formatarData(chamado.dataAbertura)}</td>
-                    <td className="py-2 md:py-3 px-2 md:px-4 text-[10px] md:text-xs text-gray-500">{formatarData(chamado.dataAtualizacao)}</td>
+                    <td className="py-2 md:py-3 px-2 md:px-4">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] md:text-xs font-medium text-gray-700">
+                          {chamado.usuarioCriacao || 'Franqueado'}
+                        </span>
+                        <span className="text-[10px] md:text-xs text-gray-500">
+                          {formatarData(chamado.dataAbertura)}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="py-2 md:py-3 px-2 md:px-4">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] md:text-xs font-medium text-gray-700">
+                          {chamado.usuarioAtualizacao || 'Franqueado'}
+                        </span>
+                        <span className="text-[10px] md:text-xs text-gray-500">
+                          {formatarData(chamado.dataAtualizacao)}
+                        </span>
+                      </div>
+                    </td>
                   </tr>
                 )
               })}
