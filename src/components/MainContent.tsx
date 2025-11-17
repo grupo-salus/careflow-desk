@@ -35,9 +35,10 @@ interface MainContentProps {
   chamados: Chamado[]
   filtroAtivo: string
   isSidebarOpen?: boolean
+  isSidebarCollapsed?: boolean
 }
 
-export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = false }: MainContentProps) {
+export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = false, isSidebarCollapsed = false }: MainContentProps) {
   const [statusFiltro, setStatusFiltro] = useState<string>('todos')
   const [ordenacao, setOrdenacao] = useState<string>('data_recente')
   const [busca, setBusca] = useState<string>('')
@@ -764,6 +765,7 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
         isOpen={isDetailsOpen}
         onClose={handleCloseDetails}
         isSidebarOpen={isSidebarOpen}
+        isSidebarCollapsed={isSidebarCollapsed}
       />
     </main>
   )

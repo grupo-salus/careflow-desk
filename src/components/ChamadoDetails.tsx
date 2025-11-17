@@ -31,13 +31,15 @@ interface ChamadoDetailsProps {
   isOpen: boolean
   onClose: () => void
   isSidebarOpen?: boolean
+  isSidebarCollapsed?: boolean
 }
 
 export default function ChamadoDetails({
   chamado,
   isOpen,
   onClose,
-  isSidebarOpen = false
+  isSidebarOpen = false,
+  isSidebarCollapsed = false
 }: ChamadoDetailsProps) {
   const [novaMensagem, setNovaMensagem] = useState<string>('')
   const [mensagens, setMensagens] = useState<Mensagem[]>([])
@@ -149,7 +151,9 @@ export default function ChamadoDetails({
         className={`fixed bg-black bg-opacity-50 z-40 transition-opacity ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         } ${
-          isSidebarOpen 
+          isSidebarCollapsed 
+            ? 'inset-0 lg:left-20' 
+            : isSidebarOpen 
             ? 'inset-0 lg:left-80' 
             : 'inset-0'
         }`}

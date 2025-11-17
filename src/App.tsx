@@ -190,6 +190,7 @@ function App() {
             chamados={chamados} 
             filtroAtivo={filtroAtivo}
             isSidebarOpen={isSidebarOpen}
+            isSidebarCollapsed={isSidebarCollapsed}
           />
         </div>
       </div>
