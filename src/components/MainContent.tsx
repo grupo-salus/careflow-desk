@@ -564,11 +564,6 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                 </svg>
                 <span>SLA:</span>
                 <span>{tempoSla.texto}</span>
-                {slaAtrasado && (
-                  <span className="ml-1 px-1.5 py-0.5 bg-red-100 text-red-700 rounded text-xs font-semibold">
-                    ATRASADO
-                  </span>
-                )}
               </div>
             </div>
           </div>
@@ -653,11 +648,6 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
                         slaAtrasado ? 'text-red-600' : tempoSla.atrasado ? 'text-orange-600' : 'text-gray-600'
                       }`}>
                         <div className="text-[10px] md:text-xs">{tempoSla.texto}</div>
-                        {slaAtrasado && (
-                          <span className="mt-1 inline-block px-1 md:px-1.5 py-0.5 bg-red-100 text-red-700 rounded text-[10px] md:text-xs font-semibold">
-                            ATRASADO
-                          </span>
-                        )}
                       </div>
                     </td>
                     <td className="py-2 md:py-3 px-2 md:px-4">
