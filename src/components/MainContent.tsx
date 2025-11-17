@@ -216,13 +216,13 @@ export default function MainContent({ chamados, filtroAtivo, isSidebarOpen = fal
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-orange-500 flex items-center justify-center">
             <img
               src="https://api.iconify.design/mdi:headset.svg?color=%23ffffff"
-              alt="Service Desk"
+              alt="Service Nexus"
               className="w-4 h-4 md:w-6 md:h-6"
             />
           </div>
           <h1 className="text-xl md:text-2xl font-bold">
             <span className="text-gray-900">CareFlow</span>
-            <span className="text-orange-500">Desk</span>
+            <span className="text-orange-500">Nexus</span>
           </h1>
         </div>
       </div>
