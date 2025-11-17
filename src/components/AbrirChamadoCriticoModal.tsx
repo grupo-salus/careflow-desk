@@ -184,8 +184,7 @@ export default function AbrirChamadoCriticoModal({
                       {isAvisoExpanded && (
                         <p className="text-xs md:text-sm text-yellow-800 whitespace-pre-line">
                           Este tipo de chamado é destinado <strong>apenas para casos de extrema urgência</strong> que impactam diretamente as operações críticas do negócio. 
-                          Ao criar um chamado crítico, <strong>todos os líderes de cada setor serão notificados automaticamente</strong> para garantir visibilidade máxima e resposta imediata. 
-                          Por favor, utilize esta opção com responsabilidade e apenas quando realmente necessário.
+                          Ao criar um chamado crítico, <strong>todos os líderes de cada setor serão notificados automaticamente</strong> para garantir visibilidade máxima e resposta imediata.
                         </p>
                       )}
                     </div>
