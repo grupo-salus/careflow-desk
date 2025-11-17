@@ -37,6 +37,7 @@ function App() {
   const [isAbrirChamadoOpen, setIsAbrirChamadoOpen] = useState<boolean>(false)
   const [isAbrirChamadoCriticoOpen, setIsAbrirChamadoCriticoOpen] = useState<boolean>(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false)
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'warning' | 'info'; isVisible: boolean }>({
     message: '',
     type: 'success',
@@ -152,12 +153,23 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <Header 
-        isSidebarOpen={isSidebarOpen}
-        onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
+        isSidebarOpen={isSidebarOpen || !isSidebarCollapsed}
+        onToggleSidebar={() => {
+          // Em desktop, alterna entre colapsado e expandido
+          if (window.innerWidth >= 1024) {
+            setIsSidebarCollapsed(!isSidebarCollapsed)
+            // Garantir que está aberto no desktop
+            setIsSidebarOpen(true)
+          } else {
+            // Em mobile, alterna entre aberto e fechado
+            setIsSidebarOpen(!isSidebarOpen)
+          }
+        }} 
       />
       <div className="flex relative overflow-x-hidden">
         <Sidebar
           isOpen={isSidebarOpen}
+          isCollapsed={isSidebarCollapsed}
           onClose={() => setIsSidebarOpen(false)}
           onFilterChange={handleFilterChange}
           onCriarChamado={handleCriarChamado}
@@ -165,7 +177,7 @@ function App() {
         />
         <div 
           className={`flex-1 transition-all duration-300 min-w-0 ${
-            isSidebarOpen ? 'lg:ml-80' : 'lg:ml-0'
+            isSidebarCollapsed ? 'lg:ml-20' : isSidebarOpen ? 'lg:ml-80' : 'lg:ml-0'
           }`}
         >
           <MainContent 
