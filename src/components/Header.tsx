@@ -125,7 +125,7 @@ export default function Header({ isSidebarOpen, onToggleSidebar }: HeaderProps) 
             >
               <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center">
                 <img
-                  src="https://api.iconify.design/mdi:headset.svg?color=%23ffffff"
+                  src={`${import.meta.env.BASE_URL}nexus.png`}
                   alt="Service Desk"
                   className="w-4 h-4"
                 />

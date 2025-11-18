@@ -32,3 +32,18 @@ body {
   border: 1px solid transparent;
 }
 
+@media (max-width: 1500px) {
+  .date-user-container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .date-user-container .separator {
+    display: none !important;
+  }
+  
+  .date-user-container .user-name {
+    margin-top: 0 !important;
+  }
+}
+
